@@ -1,12 +1,9 @@
 import psycopg2
 
-# Define your connection string
 connReqs = "host='localhost' dbname='A3' user='postgres' password='postgres'"
 
-# Connect to your database
 connection = psycopg2.connect(connReqs)
 
-# Create a cursor object
 cursor = connection.cursor()
 
 exitFlag = True
@@ -34,9 +31,8 @@ while exitFlag == True:
 
         for i in range(0, len(stuffs)):
             stuffs[i] = stuffs[i].replace(" ", "")
-        #DEBUG: print(stuffs)
+
         insertStatement = "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('{}', '{}', '{}', '{}');".format(stuffs[0], stuffs[1], stuffs[2], stuffs[3])
-        #DEBUG: print(insertStatement)
         cursor.execute(insertStatement)
         connection.commit()
 
@@ -47,10 +43,10 @@ while exitFlag == True:
         if(" " in inputList[1] or " " in inputList[0]):
             inputList[1] = inputList[1].replace(" ", "")
             inputList[0] = inputList[0].replace(" ", "")
-        StudentNumber = inputList[0]
+        studentNumber = inputList[0]
         new_email = inputList[1]
         
-        update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, StudentNumber)
+        update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, studentNumber)
         cursor.execute(update_query)
         connection.commit()
 
@@ -58,9 +54,8 @@ while exitFlag == True:
     elif("deleteStudent(" in userInput and userInput[-1] == ")"):
         tobeDeleted = userInput.split("(")
         studentNumber = tobeDeleted[1].replace(")", "")
-        #DEBUG: print(studentNumber)
+
         delete_query = "DELETE FROM students WHERE student_id = {};".format(studentNumber)
-        #DEBUG: print (delete_query)
         cursor.execute(delete_query)
         connection.commit()
 

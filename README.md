@@ -4,6 +4,7 @@ Installs:
 pip install psycopg2
 
 ******If any info differs in your postgres database you must change it in the connReqs Variable******
+
 (Current Database Setup Below)
 host = localhost, dbname (database name) = A3, user = postgres, password = postgres
 

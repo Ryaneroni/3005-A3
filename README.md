@@ -21,9 +21,12 @@ A main menu will be provided, enter one of the available functions with your dat
 **Functions:**
 
 getAllStudents()
+
 addStudent(first_name, last_name, email, enrollment_date)
 updateStudentEmail(student_id, new_email)
+
 deleteStudent(student_id)
+
 quit
 
 

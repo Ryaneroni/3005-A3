@@ -11,11 +11,11 @@ host = localhost, dbname (database name) = A3, user = postgres, password = postg
 
 **Operation:**
 
-Ensure database has been created and populated before operation
-Install pyscopg2 using the command above
-Navigate to the folder where you placed my file, and run using Python.
-e.g (In folder with the file) 
-python main.py
+Ensure database has been created and populated before operation -
+Install pyscopg2 using the command above -
+Navigate to the folder where you placed my file, and run using Python. -
+e.g (In folder with the file)  -
+python main.py -
 A main menu will be provided, enter one of the available functions with your data (type quit to exit)
 
 **Functions:**
@@ -28,6 +28,8 @@ updateStudentEmail(student_id, new_email)
 deleteStudent(student_id)
 
 quit
+
+
 
 
 **Development Data**

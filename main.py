@@ -1,3 +1,4 @@
+#Ryan Mastin 101229946
 import psycopg2
 
 #sets up the connection reqs, our database is on local host with the following info
@@ -30,7 +31,7 @@ while exitFlag == True:
         for record in records:
             print(record)
     
-    #addStudent() function, strips unessesary stuff off (brackets and commas)
+    #addStudent() function, strips unessesary stuff off (brackets and splits on commas) creating a list of pure values
     elif("addStudent(" in userInput and userInput[-1] == ")"):
         tobeAdded = (userInput.split("("))
         details = tobeAdded[1].strip(")")
@@ -45,7 +46,7 @@ while exitFlag == True:
         cursor.execute(insertStatement)
         connection.commit()
 
-    #updateStudentEmail() function, strips unessesary stuff off (brackets and commas)
+    #updateStudentEmail() function, strips unessesary stuff off (brackets and splits on commas) creating a list of pure values
     elif("updateStudentEmail(" in userInput and userInput[-1] == ")"):
         tobeUpdated = (userInput.split("("))
         emails = tobeUpdated[1].strip(")")
@@ -63,7 +64,7 @@ while exitFlag == True:
         cursor.execute(update_query)
         connection.commit()
 
-    #deleteStudent() function, strips unessecary stuff off (brackets and commas)
+    #deleteStudent() function, strips unessecary stuff off (brackets and splits on commas) creating a list of pure values
     elif("deleteStudent(" in userInput and userInput[-1] == ")"):
         tobeDeleted = userInput.split("(")
         studentNumber = tobeDeleted[1].replace(")", "")

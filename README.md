@@ -1,6 +1,7 @@
 1/1 File -> main.py
 
 **Installs:**
+
 pip install psycopg2
 
 ******If any info differs in your postgres database you must change it in the connReqs Variable******

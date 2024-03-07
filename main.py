@@ -1,4 +1,5 @@
 #Ryan Mastin 101229946
+#Assignment 3 Question1
 import psycopg2
 
 #sets up the connection reqs, our database is on local host with the following info

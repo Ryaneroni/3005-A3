@@ -17,7 +17,7 @@ host = localhost, dbname (database name) = A3, user = postgres, password = postg
 **Operation:**
 
 Ensure database has been created and populated before operation -
-Install pyscopg2 using the command above -
+Install pyscopg2 using the pip command above (In the folder with the file, do pip install pyscopgy2)-
 Navigate to the folder where you placed my file, and run using Python. -
 
 e.g (In folder with the file) -> python main.py
@@ -26,15 +26,15 @@ A main menu will be provided, enter one of the available functions with your dat
 
 **Functions:**
 
-getAllStudents()
+getAllStudents() - Returns all students and information in the students table
 
-addStudent(first_name, last_name, email, enrollment_date)
+addStudent(first_name, last_name, email, enrollment_date) - creates a student using the provided fields
 
-updateStudentEmail(student_id, new_email)
+updateStudentEmail(student_id, new_email) - updates the email of a student in the student table
 
-deleteStudent(student_id)
+deleteStudent(student_id) - deletes a student using their ID
 
-quit
+quit - Quits the program
 
 
 

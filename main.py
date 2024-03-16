@@ -8,12 +8,13 @@ connReqs = "host='localhost' dbname='A3' user='postgres' password='postgres'"
 #create a connection
 connection = psycopg2.connect(connReqs)
 
-#create a cursor
+#creates a cursor to execute actions on the database
 cursor = connection.cursor()
 
 #main menu loop
 exitFlag = True
 while exitFlag == True:
+    #prints main menu
     print("\nFunctions:\ngetAllStudents() - getAllStudents(): Retrieves and displays all records from the students table. ")
     print("addStudent(first_name, last_name, email, enrollment_date): Inserts a new student record into the students table. ")
     print("updateStudentEmail(student_id, new_email): Updates the email address for a student with the specified student_id. ")

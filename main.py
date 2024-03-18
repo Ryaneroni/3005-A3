@@ -45,6 +45,9 @@ while exitFlag == True:
         for i in range(0, len(stuffs)):
             stuffs[i] = stuffs[i].replace(" ", "")
         
+        if(len(stuffs) != 4):
+            print("Incorrect number of Args, please enter it again")
+            continue
         #insert statement for our database, .format inserts our variables into the string then executes and commits 
         try:
             insertStatement = "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('{}', '{}', '{}', '{}');".format(stuffs[0], stuffs[1], stuffs[2], stuffs[3])
@@ -58,7 +61,11 @@ while exitFlag == True:
         tobeUpdated = (userInput.split("("))
         emails = tobeUpdated[1].strip(")")
         inputList = emails.split(",")
-        
+    
+        if(len(inputList) != 2):
+            print("Incorrect number of Args, please enter it again")
+            continue
+
         #if spaces exist (likely) then replace them with nothing
         if(" " in inputList[1] or " " in inputList[0]):
             inputList[1] = inputList[1].replace(" ", "")

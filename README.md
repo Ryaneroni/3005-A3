@@ -8,17 +8,17 @@ Ryan Mastin 101229946 ---> **Assignment 3 Question 1**
 
 pip install psycopg2
 
-******If any info differs in your postgres database you must change it in the connReqs Variable******
-
-(Current Database Setup):
-host = localhost, dbname (database name) = A3, user = postgres, password = postgres
-
 
 **Operation:**
 
 Ensure database has been created and populated before operation (Use the dbCreationScript.txt document in the repo and enter that in the pgAdmin query tool)- 
 
 Install pyscopg2 using the pip command above (In the folder with the file, do pip install pyscopgy2) -
+
+******If any info differs in your postgres database you must change it in the connReqs Variable in the script******
+
+(Current Database Setup [Change to match your setup]):
+host = localhost, dbname (database name) = A3, user = postgres, password = postgres
 
 Navigate to the folder where you placed my file, and run using Python. e.g (In folder with the file) -> python main.py
 

@@ -25,6 +25,8 @@ while exitFlag == True:
     userInput = input("Please Enter Input: ")
     if(userInput.lower() == "quit"):
         exitFlag = False
+        #not Needed but just incase
+        connection.commit()
     
     #selects all records from the student table and prints each returned student
     elif(userInput == "getAllStudents()"):
@@ -47,7 +49,6 @@ while exitFlag == True:
         try:
             insertStatement = "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('{}', '{}', '{}', '{}');".format(stuffs[0], stuffs[1], stuffs[2], stuffs[3])
             cursor.execute(insertStatement)
-            connection.commit()
             print("*Added Student*")
         except psycopg2.Error as error:
             print("Error")
@@ -74,7 +75,6 @@ while exitFlag == True:
                 #update the student with the new values using string format
                 update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, studentNumber)
                 cursor.execute(update_query)
-                connection.commit()
                 print("*Updated Student*")
             except psycopg2.Error as err:
                 print("Error")
@@ -95,13 +95,13 @@ while exitFlag == True:
                  #creates the delete query for our database, .format inserts the student number into the query.
                 delete_query = "DELETE FROM students WHERE student_id = {};".format(studentNumber)
                 cursor.execute(delete_query)
-                connection.commit()
                 print("*Deleted Student*")
             except psycopg2.Error as err:
                 print("Error")
         else:
             print("Could not find student")
-
+    
+    connection.commit()
 #closes the cursor and connection on exit (not needed but good practice)
 cursor.close()
 connection.close()

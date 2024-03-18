@@ -43,7 +43,7 @@ while exitFlag == True:
         for i in range(0, len(stuffs)):
             stuffs[i] = stuffs[i].replace(" ", "")
         
-        #insert statement for our database, .format inserts our variables into the string then executes and commits the the trans
+        #insert statement for our database, .format inserts our variables into the string then executes and commits 
         try:
             insertStatement = "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('{}', '{}', '{}', '{}');".format(stuffs[0], stuffs[1], stuffs[2], stuffs[3])
             cursor.execute(insertStatement)
@@ -65,12 +65,13 @@ while exitFlag == True:
         studentNumber = inputList[0]
         new_email = inputList[1]
         
-        #update statement for the database, .format inserts the values in to be updated
+        #attempts to find the student, if its found then updates the found student
         findStudent = "SELECT * FROM students WHERE student_id = {};".format(studentNumber)
         cursor.execute(findStudent)
         potential = cursor.fetchone()
         if potential:
             try:
+                #update the student with the new values using string format
                 update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, studentNumber)
                 cursor.execute(update_query)
                 connection.commit()
@@ -85,12 +86,13 @@ while exitFlag == True:
         tobeDeleted = userInput.split("(")
         studentNumber = tobeDeleted[1].replace(")", "")
 
-        #creates the delete query for our database, .format inserts the student number into the query.
+        #First attempts to find the student in the database, if its found go ahead and delete. otherwise print and continue
         findStudent = "SELECT * FROM students WHERE student_id = {};".format(studentNumber)
         cursor.execute(findStudent)
         potential = cursor.fetchone()
         if potential:
             try:
+                 #creates the delete query for our database, .format inserts the student number into the query.
                 delete_query = "DELETE FROM students WHERE student_id = {};".format(studentNumber)
                 cursor.execute(delete_query)
                 connection.commit()

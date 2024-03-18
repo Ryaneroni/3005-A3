@@ -1,6 +1,6 @@
 https://youtu.be/MgzRcjERFpA
 
-Ryan Mastin 101229946
+Ryan Mastin 101229946 ---> **Assignment 3 Question 1**
 
 1/1 File -> main.py
 
@@ -8,31 +8,33 @@ Ryan Mastin 101229946
 
 pip install psycopg2
 
-******If any info differs in your postgres database you must change it in the connReqs Variable******
-
-(Current Database Setup):
-host = localhost, dbname (database name) = A3, user = postgres, password = postgres
-
 
 **Operation:**
 
-Ensure database has been created and populated before operation -
-Install pyscopg2 using the command above -
-Navigate to the folder where you placed my file, and run using Python. -
-e.g (In folder with the file) ->
-python main.py -
+Ensure database has been created and populated before operation (Use the dbCreationScript.txt document in the repo and enter that in the pgAdmin query tool [*after creating the db*])- 
+
+Install pyscopg2 using the pip command above (In the folder with the file, do pip install pyscopgy2) -
+
+******If any info differs in your postgres database you must change it in the connReqs Variable in the script******
+
+(Current Database Setup [Change to match your setup]):
+host = localhost, dbname (database name) = A3, user = postgres, password = postgres
+
+Navigate to the folder where you placed my file, and run using Python. e.g (In folder with the file) -> python main.py
+
 A main menu will be provided, enter one of the available functions with your data (type quit to exit)
 
 **Functions:**
 
-getAllStudents()
+getAllStudents() - Returns all students and information in the students table
 
-addStudent(first_name, last_name, email, enrollment_date)
-updateStudentEmail(student_id, new_email)
+addStudent(first_name, last_name, email, enrollment_date) - creates a student using the provided fields
 
-deleteStudent(student_id)
+updateStudentEmail(student_id, new_email) - updates the email of a student in the student table
 
-quit
+deleteStudent(student_id) - deletes a student using their ID
+
+quit - Quits the program
 
 
 

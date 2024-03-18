@@ -107,6 +107,9 @@ while exitFlag == True:
                 print("Error")
         else:
             print("Could not find student")
+
+    else:
+        print("Unknown Command")
     
     connection.commit()
 #closes the cursor and connection on exit (not needed but good practice)

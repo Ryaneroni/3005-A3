@@ -8,12 +8,13 @@ connReqs = "host='localhost' dbname='A3' user='postgres' password='postgres'"
 #create a connection
 connection = psycopg2.connect(connReqs)
 
-#create a cursor
+#creates a cursor to execute actions on the database
 cursor = connection.cursor()
 
 #main menu loop
 exitFlag = True
 while exitFlag == True:
+    #prints main menu
     print("\nFunctions:\ngetAllStudents() - getAllStudents(): Retrieves and displays all records from the students table. ")
     print("addStudent(first_name, last_name, email, enrollment_date): Inserts a new student record into the students table. ")
     print("updateStudentEmail(student_id, new_email): Updates the email address for a student with the specified student_id. ")
@@ -43,9 +44,13 @@ while exitFlag == True:
             stuffs[i] = stuffs[i].replace(" ", "")
         
         #insert statement for our database, .format inserts our variables into the string then executes and commits the the trans
-        insertStatement = "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('{}', '{}', '{}', '{}');".format(stuffs[0], stuffs[1], stuffs[2], stuffs[3])
-        cursor.execute(insertStatement)
-        connection.commit()
+        try:
+            insertStatement = "INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('{}', '{}', '{}', '{}');".format(stuffs[0], stuffs[1], stuffs[2], stuffs[3])
+            cursor.execute(insertStatement)
+            connection.commit()
+            print("*Added Student*")
+        except psycopg2.Error as error:
+            print("Error")
 
     #updateStudentEmail() function, strips unessesary stuff off (brackets and splits on commas) creating a list of pure values
     elif("updateStudentEmail(" in userInput and userInput[-1] == ")"):
@@ -61,9 +66,13 @@ while exitFlag == True:
         new_email = inputList[1]
         
         #update statement for the database, .format inserts the values in to be updated
-        update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, studentNumber)
-        cursor.execute(update_query)
-        connection.commit()
+        try:
+            update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, studentNumber)
+            cursor.execute(update_query)
+            connection.commit()
+            print("*Updated Student*")
+        except psycopg2.Error as err:
+            print("Error")
 
     #deleteStudent() function, strips unessecary stuff off (brackets and splits on commas) creating a list of pure values
     elif("deleteStudent(" in userInput and userInput[-1] == ")"):
@@ -71,9 +80,13 @@ while exitFlag == True:
         studentNumber = tobeDeleted[1].replace(")", "")
 
         #creates the delete query for our database, .format inserts the student number into the query.
-        delete_query = "DELETE FROM students WHERE student_id = {};".format(studentNumber)
-        cursor.execute(delete_query)
-        connection.commit()
+        try:
+            delete_query = "DELETE FROM students WHERE student_id = {};".format(studentNumber)
+            cursor.execute(delete_query)
+            connection.commit()
+            print("*Deleted Student*")
+        except psycopg2.Error as err:
+            print("Error")
 
 #closes the cursor and connection on exit (not needed but good practice)
 cursor.close()

@@ -66,13 +66,19 @@ while exitFlag == True:
         new_email = inputList[1]
         
         #update statement for the database, .format inserts the values in to be updated
-        try:
-            update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, studentNumber)
-            cursor.execute(update_query)
-            connection.commit()
-            print("*Updated Student*")
-        except psycopg2.Error as err:
-            print("Error")
+        findStudent = "SELECT * FROM students WHERE student_id = {};".format(studentNumber)
+        cursor.execute(findStudent)
+        potential = cursor.fetchone()
+        if potential:
+            try:
+                update_query = ("""UPDATE students SET email = '{}' WHERE student_id = {};""").format(new_email, studentNumber)
+                cursor.execute(update_query)
+                connection.commit()
+                print("*Updated Student*")
+            except psycopg2.Error as err:
+                print("Error")
+        else:
+            print("No Student Found")
 
     #deleteStudent() function, strips unessecary stuff off (brackets and splits on commas) creating a list of pure values
     elif("deleteStudent(" in userInput and userInput[-1] == ")"):
@@ -80,13 +86,19 @@ while exitFlag == True:
         studentNumber = tobeDeleted[1].replace(")", "")
 
         #creates the delete query for our database, .format inserts the student number into the query.
-        try:
-            delete_query = "DELETE FROM students WHERE student_id = {};".format(studentNumber)
-            cursor.execute(delete_query)
-            connection.commit()
-            print("*Deleted Student*")
-        except psycopg2.Error as err:
-            print("Error")
+        findStudent = "SELECT * FROM students WHERE student_id = {};".format(studentNumber)
+        cursor.execute(findStudent)
+        potential = cursor.fetchone()
+        if potential:
+            try:
+                delete_query = "DELETE FROM students WHERE student_id = {};".format(studentNumber)
+                cursor.execute(delete_query)
+                connection.commit()
+                print("*Deleted Student*")
+            except psycopg2.Error as err:
+                print("Error")
+        else:
+            print("Could not find student")
 
 #closes the cursor and connection on exit (not needed but good practice)
 cursor.close()

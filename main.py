@@ -93,7 +93,7 @@ while exitFlag == True:
         tobeDeleted = userInput.split("(")
         studentNumber = tobeDeleted[1].replace(")", "")
 
-        if(len(studentNumber) == 0 or len(studentNumber)>1) :
+        if(len(studentNumber) != 1) :
             print("Please correct inputs and retry")
             continue
         #First attempts to find the student in the database, if its found go ahead and delete. otherwise print and continue

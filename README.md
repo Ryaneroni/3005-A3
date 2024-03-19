@@ -11,9 +11,9 @@ pip install psycopg2
 
 **Operation:**
 
-Ensure database has been created and populated before operation (Use the dbCreationScript.txt document in the repo and enter that in the pgAdmin query tool [*after creating the db*])- 
+Ensure database has been created and populated before operation (Use the DDL and DML.txt document in the repo and enter that in the pgAdmin query tool [*after creating the db*]) 
 
-Install pyscopg2 using the pip command above (In the folder with the file, do pip install pyscopgy2) -
+Install pyscopg2 using the pip command above (In the folder with the file, do pip install pyscopgy2) 
 
 ******If any info differs in your postgres database you must change it in the connReqs Variable in the script******
 

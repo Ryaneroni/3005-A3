@@ -15,7 +15,7 @@ cursor = connection.cursor()
 exitFlag = True
 while exitFlag == True:
     #prints main menu
-    print("\nFunctions:\ngetAllStudents() - getAllStudents(): Retrieves and displays all records from the students table. ")
+    print("\nFunctions:\ngetAllStudents(): Retrieves and displays all records from the students table. ")
     print("addStudent(first_name, last_name, email, enrollment_date): Inserts a new student record into the students table. ")
     print("updateStudentEmail(student_id, new_email): Updates the email address for a student with the specified student_id. ")
     print("deleteStudent(student_id): Deletes the record of the student with the specified student_id. \n")
@@ -93,6 +93,9 @@ while exitFlag == True:
         tobeDeleted = userInput.split("(")
         studentNumber = tobeDeleted[1].replace(")", "")
 
+        if(len(studentNumber) == 0 or len(studentNumber)>1) :
+            print("Please correct inputs and retry")
+            continue
         #First attempts to find the student in the database, if its found go ahead and delete. otherwise print and continue
         findStudent = "SELECT * FROM students WHERE student_id = {};".format(studentNumber)
         cursor.execute(findStudent)
